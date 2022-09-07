@@ -1,28 +1,23 @@
 {
-  "name": "labs",
+  "name": "nodejs-labs",
   "version": "1.0.0",
-  "description": "NodeJs Labs",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "start-server": "node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tehv1007/NodeJs_Labs.git"
-  },
-  "author": "",
+  "author": "Tehv1007",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tehv1007/NodeJs_Labs/issues"
+  "devDependencies": {
+    "nodemon": "^1.18.3"
   },
-  "homepage": "https://github.com/tehv1007/NodeJs_Labs#readme",
   "dependencies": {
-    "body-parser": "^1.20.0",
-    "ejs": "^3.1.8",
-    "express": "^4.18.1",
-    "express-handlebars": "3.0",
-    "nodemon": "^1.18.3",
-    "pug": "^3.0.2"
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "pug": "^2.0.3"
   }
 }
