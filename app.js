@@ -199,7 +199,7 @@ mongoose
         anotherStaff.save();
       }
     });
-    app.listen(3000, () => {
+    app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
       connect();
       console.log("Connected to backend.");
     });
