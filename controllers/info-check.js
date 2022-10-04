@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const PdfFile = require('pdfkit');
-const fileHelper = require('../util/file');
+const fileHelper = require('../Util/file');
 const Staff = require('../models/staff');
 const Methods = require('../Util/auxiliary');
 
