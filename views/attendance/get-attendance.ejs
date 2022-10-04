@@ -1,0 +1,24 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" href="/css/forms.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <%- include('../includes/sub-nav.ejs') %>
+                <div class="grid-container-sub">
+                        <% const lastTime = staffs.workTimes.length - 1 %>
+                        <% const temp = staffs.workTimes[lastTime] %>
+                        <div class="grid-item-sub">
+                            <h4>Tên Nhân Viên: <%= staffs.name %></h4>
+                            <h4>Nơi làm việc</h4>
+                            <p><%= staffs.workTimes[lastTime].workPlace %></p>
+                            <h4>Giờ bắt đầu</h4>
+                            <p><%= temp.startTime.getDate() + "/" + (+temp.startTime.getMonth() + 1) + "/" 
+                                + temp.startTime.getFullYear() + " " + temp.startTime.getHours() + ":" 
+                                + temp.startTime.getMinutes() + ":" + temp.startTime.getSeconds() %></p>
+                        </div>
+                </div>
+            </main>
+            <%- include('../includes/end.ejs') %>

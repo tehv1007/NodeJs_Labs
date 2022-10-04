@@ -1,0 +1,85 @@
+<div class="backdrop"></div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item">
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Trang chủ</a>
+            </li>
+            <% if (isAuthenticated) { %>
+            <li class="main-header__item">
+                <a class="<%= path === '/attendance' ? 'active' : '' %>" href="/attendance">Điểm danh</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/staff-info' ? 'active' : '' %>" href="/staff-info">Thông tin cá nhân</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/work-info' ? 'active' : '' %>" href="/work-info">Thông tin giờ làm</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/covid-info' ? 'active' : '' %>" href="/covid-info">Thông tin Covid cá nhân</a>
+            </li>
+            <% } %> <% if (role === 'admin' ) {%>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin/staff' ? 'active' : '' %>" href="/admin/staff">Quản Lý Nhân Viên</a>    
+            </li>
+            <%} %>
+        </ul>
+        <ul class="main-header__item-list login-out" >
+            <% if (!isAuthenticated) { %>
+            <li class="main-header__item">
+              <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Đăng Nhập</a>
+            </li>
+
+            <% } else { %>
+            <li class="main-header__item login-out" style="float:right" >
+              <form action="/logout" method="POST">
+                <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                <button type="submit">Đăng Xuất</button>
+              </form>
+            </li>
+            <% } %>
+        </ul>
+    </nav>
+</header>
+
+<nav class="mobile-nav">
+    <ul class="mobile-nav__item-list">
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/' ? 'active' : '' %>" href="/">Trang chủ</a>
+        </li>
+        <% if (isAuthenticated) { %>
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/attendance' ? 'active' : '' %>" href="/attendance">Điểm danh</a>
+        </li>
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/staff-info' ? 'active' : '' %>" href="/staff-info">Thông tin cá nhân</a>
+        </li>
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/time-info' ? 'active' : '' %>" href="/time-info">Thông tin giờ làm</a>
+        </li>
+        <li class="mobile-nav__item">
+            <a class="<%= path === '/covid-info' ? 'active' : '' %>" href="/covid-info">Thông tin Covid cá nhân</a>
+        </li>
+        <% } %> <% if (role === 'admin' ) {%>
+            <li class="mobile-nav__item">
+              <a class="<%= path === '/admin/staff' ? 'active' : '' %>" href="/admin/staff">Quản Lý Nhân Viên</a>
+            </li>
+        <%} %>
+    </ul>
+    <ul class="mobile-nav__item-list">
+        <% if (!isAuthenticated) { %>
+        <li class="mobile-nav__item">
+          <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Đăng Nhập</a>
+        </li>
+
+        <% } else { %>
+        <li class="mobile-nav__item">
+          <form action="/logout" method="POST">
+            <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+            <button type="submit">Đăng Xuất</button>
+          </form>
+        </li>
+        <% } %>
+      </ul>
+</nav>

@@ -1,0 +1,128 @@
+<%- include('../includes/head.ejs') %>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+>
+    <style>
+
+        .form-control {
+            margin: 5px auto;
+            height: min-content;
+        }
+
+        .form-control label,
+        .form-control input {
+            display: block;
+            width: 90%;
+        }
+
+        .form-control input {
+            margin: 3px auto;
+            border-radius: 3px;
+            border: 1px solid grey;
+        }
+
+        .form {
+            margin-bottom: 40px;
+        }
+        
+        button:hover {
+            border-radius: 3px;
+            border: 1px solid #5454ad;
+            background-color: blue;
+            color: #ffeb3b;
+        }
+        .title {
+            margin: 30px 40px;
+        }
+
+        .covid-info {
+            display: flex;
+        }
+    </style>
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-4 col-lg-4 form">
+                        <form action="/covid-info/temperature" method="post">
+                            <div class="form-control">
+                                <label for="temperature">Nhiệt độ</label>
+                                <input type="text" id="temperature" name="temperature"/>
+                            </div>
+                            <div class="form-control">
+                                <label for="time">Giờ đo</label>
+                                <input type="time" id="time" name="time"/>
+                            </div>
+                            <div class="form-control">
+                                <label for="date">Ngày đo</label>
+                                <input type="date" id="date" name="date" />
+                            </div>
+                            <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                            <button type="submit">Đăng ký</button>
+                        </form>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4 form">
+                        <form action="/covid-info/vaccine" method="post">
+                            <div class="form-control">
+                                <label for="vaccineName1">Loại vaccine của mũi 1</label>
+                                <input type="text" id="vaccineName1" name="vaccineName1"/>
+                            </div>
+                            <div class="form-control">
+                                <label for="date1">Ngày tiêm</label>
+                                <input type="date" id="date1" name="date1"/>
+                            </div>
+                            <div class="form-control">
+                                <label for="vaccineName2">Loại vaccine của mũi 2</label>
+                                <input type="text" id="vaccineName2" name="vaccineName2"/>
+                            </div>
+                            <div class="form-control">
+                                <label for="date2">Ngày tiêm</label>
+                                <input type="date" id="date2" name="date2"/>
+                            </div>
+                            <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                            <button type="submit">Đăng ký</button>
+                        </form>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4 form">
+                        <form action="/covid-info/covidInfection" method="POST">
+                            <div class="form-control">
+                                <lable for="covidInfection">Ngày Nhiễm Covid</lable>
+                                <input type="date" name="covidInfection" id="covidInfection" />
+                            </div>
+                            <div class="form-control">
+                                <lable for="getWell">Ngày Khỏi Bệnh</lable>
+                                <input type="date" name="getWell" id="getWell" />
+                            </div>
+                            <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                            <button type="submit">Đăng Ký</button>
+                        </form>
+                    </div>
+                </div>
+                <% if (role === 'admin' ) { %> 
+                    <div class="row">
+                        <div class="col-12">
+                            <h3 class="title">Thông tin covid cá nhân:</h3>
+                        </div><br>
+                        <% staffs.forEach(staff => { %>
+                            <div class="card col-12 col-md-4 col-lg-4" >
+                                <h5 style="text-align: center">Nhân viên : <%= staff.name %></h5>
+                                <div class="card-body ">
+                                    <p class="card-text">Nhiệt độ : <%= staff.bodyTemperature[0] ? staff.bodyTemperature[0].temperature : '' %></p>
+                                    <p class="card-text">Tên vaccine mũi một: <%= staff.vaccineInfo[0] ? staff.vaccineInfo[0].vaccineName1 : '' %></p>
+                                    <p class="card-text">Ngày tiêm: <%= staff.vaccineInfo[0] ? staff.vaccineInfo[0].date1.getDate() + "/" + (+staff.vaccineInfo[0].date1.getMonth() +1) + "/" + staff.vaccineInfo[0].date1.getFullYear() : '' %></p>
+                                    <p class="card-text">Tên vaccine mũi hai: <%= staff.vaccineInfo[0] ? staff.vaccineInfo[0].vaccineName2 : '' %></p>
+                                    <p class="card-text">Ngày tiêm: <%= staff.vaccineInfo[0] ? staff.vaccineInfo[0].date2.getDate() + "/" + (+staff.vaccineInfo[0].date2.getMonth() +1) + "/" + staff.vaccineInfo[0].date2.getFullYear() : '' %></p>
+                                    <Button type="button" class="btn btn-info" ><a style='text-decoration:none; color: white' href="/covid-info/<%= staff._id %>">Xuất Trang PDF</a></Button>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                    </div>
+                    <% } %>
+            </div>
+        </main>
+        <%- include('../includes/end.ejs') %>

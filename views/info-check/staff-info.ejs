@@ -1,0 +1,50 @@
+<%- include('../includes/head.ejs') %>
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+>
+<style>
+    img{
+        width: 100%;
+        margin: auto;
+    }
+    .card{
+        max-width: fit-content;
+        display: flex;
+    }
+</style>
+    </head>
+        
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+            <div class="container card">
+                <form action="/staff-info" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-12 col-md-8 col-lg-8">
+                            <div class="card-body text-info">
+                                <p class="card-text fa fa-id-card"> <b>ID:</b> <%= staffs._id %></p><br>
+                                <p class="card-text fa fa-user"> <b>Họ tên:</b> <%= staffs.name %></p><br>
+                                <p class="card-text fa fa-birthday-cake"> <b>Ngày sinh:</b>
+                                    <%= staffs.doB.getFullYear() + "/" + staffs.doB.getMonth() + "/" + staffs.doB.getDate() %></p><br>
+                                <p class="card-text fa fa-money"> <b>Hệ số lương:</b> <%= staffs.salaryScale %></p><br>
+                                <p class="card-text fa fa-calendar"> <b>Ngày vào công ty:</b>
+                                    <%= staffs.startDate.getFullYear() + "/" + staffs.startDate.getMonth() + "/" + staffs.startDate.getDate() %></p><br>
+                                <p class="card-text fa fa-tasks"> <b>Phòng ban:</b> <%= staffs.department %></p><br>
+                                <p class="card-text fa fa-calendar"> <b>Số ngày phép còn lại:</b> <%= staffs.annualLeave %></p>
+                                <div class="card-text">
+                                    <i class="fa fa-picture-o"></i>
+                                    <input type="file" name="image" id="image"/>
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <button class="btn btn-success" type="submit">Chỉnh Sửa</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <img class="img-thumbnail" src="/<%= staffs.imageUrl %>" alt="avatar">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <%- include('../includes/end.ejs') %>

@@ -1,0 +1,91 @@
+.product-form {
+    width: 20rem;
+    max-width: 90%;
+    margin: auto;
+    display: block;
+}
+
+.product-item {
+    width: 20rem;
+    max-width: 95%;
+    margin: 1rem;
+}
+
+.product__title {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.product__price {
+    text-align: center;
+    color: #4d4d4d;
+    margin-bottom: 0.5rem;
+}
+
+.product__description {
+    text-align: center;
+}
+
+button:disabled {
+    background-color: grey;
+    color: white;
+    border: 1px solid grey;
+}
+
+button:disabled:hover {
+    background-color: grey;
+}
+
+.inactive {
+    color: grey;
+}
+
+button {
+    border-radius: 3px;
+    border: 1px solid #5454ad;
+    background-color: blue;
+    color: #ffeb3b;
+}
+
+.active {
+    color: green
+}
+.title {
+    text-align: center;
+    color: green;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    padding: 5px;
+}
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 5px;
+    font-size: 18x;
+    text-align: center;
+}
+
+.grid-container-sub {
+    display: grid;
+    grid-template-columns:none auto none;
+    background-color: #2196F3;
+    padding: 5px;
+}
+.grid-item-sub {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 5px;
+    font-size: 18x;
+    text-align: center;
+}
+
+.errorMessage {
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    width: 30rem;
+    background: rgb(238, 41, 10);
+    text-align: center;
+}

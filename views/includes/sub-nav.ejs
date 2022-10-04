@@ -1,0 +1,18 @@
+<div class="card__actions">
+    <form action="/attendance/checkin" method="GET">
+        <button 
+        class="btn" 
+            <%= staffs.workStatus === null & staffs.isConfirm === null || 
+            staffs.workStatus === false & staffs.isConfirm === null ? "" : "disabled" %> >
+            Điểm Danh
+        </button>
+    </form>
+    <form action="/attendance/checkout" method="POST">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <button class="btn" <%= staffs.workStatus ? "" : "disabled" %>>Kết thúc làm</button>
+      
+    </form>
+    <form action="/attendance/leave" method="GET">
+      <button class="btn" <%= staffs.isConfirm ? "disabled" : "" %>>Nghỉ Phép</button>
+    </form>
+  </div>
