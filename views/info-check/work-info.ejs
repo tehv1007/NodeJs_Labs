@@ -1,0 +1,111 @@
+<%- include('../includes/head.ejs') %>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+>
+<style>
+</style>
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <h3 class="title my-3">Danh sách giờ đã làm</h3>
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Ngày</th>
+                                <th>Giờ bắt đầu</th>
+                                <th>Giờ kết thúc</th>
+                                <th>Nơi làm việc</th>
+                                <th>Giờ làm được</th>
+                            </tr>
+                        </thead>
+                        <% staffs.workTime.forEach(workTime => { %>
+                        <tbody>
+                            <tr>
+                                <td><%= workTime.startTime.getDate() %></td>
+                                <td><%= workTime.startTime.getHours() + ":" + workTime.startTime.getMinutes()%></td>
+                                <td><%= workTime.endTime === null ? "--" : workTime.endTime.getHours() + ":" + workTime.endTime.getMinutes() %></td>
+                                <td><%= workTime.workPlace %></td>
+                                <td>
+                                    <% if (workTime.endTime === null) { %>
+                                        Chưa kết thúc
+                                    <% } else { %> 
+                                        <%= workTime.hours %> h
+                                    <% } %>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <% }); %>
+                    </table>
+                        <p><b>Tổng số giờ đã làm ngày hôm nay: </b><%= staffs.totalTimeWork %> h</p>
+                        <p><b>Số Giờ làm thêm: </b>
+                            <% let overtime = 0; staffs.workTime.forEach(workTime => { %>
+                                <% if (workTime.endTime === null) { %>
+                                    
+                                <% } else { %> 
+                                <%  const hoursEnd = workTime.endTime.getHours(); %>
+                                <%  const hoursStart = workTime.startTime.getHours(); %>
+                                <%  const totalTimeWork = (hoursEnd* 60 + workTime.endTime.getMinutes()) - 
+                                    (hoursStart*60 + workTime.startTime.getMinutes()); %>
+                                <%  overtime += totalTimeWork/60 - 8 < 0 ? 0 : (totalTimeWork/60 - 8).toFixed(2) %>
+                                <% } %> 
+                            <% }); %>
+                            <%= overtime %>
+                        </p>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12">
+                    <h3 class="title my-3">Danh sách đăng ký nghỉ phép</h3>
+                    <table class="table table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Ngày</th>
+                                <th>Số Giờ</th>
+                                <th>Lý do</th>
+                            </tr>
+                        </thead>
+                       
+                        <tr>
+                            <% staffs.leaveInfoList.forEach(leaveInfo => { %>
+                                <tbody>
+                                    <td>
+                                        <%= leaveInfo.startLeaveDay.getDate() + "/" + leaveInfo.startLeaveDay.getMonth() + "/" + leaveInfo.startLeaveDay.getFullYear() %> - <%= leaveInfo.endLeaveDay.getDate() + "/" + leaveInfo.endLeaveDay.getMonth() + "/" + leaveInfo.endLeaveDay.getFullYear() %>
+                                    </td>
+                                    <td>
+                                        <%= leaveInfo.timeLeave %>
+                                    </td>
+                                    <td>
+                                        <%= leaveInfo.reason %>
+                                    </td>
+                                </tbody>
+                            <% }) %>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-12 col-md-12 col-lg-12">
+                    <h3 class="title my-3">Chi tiết lương</h3>
+                    <form action="/work-info" class="month-salary" method="POST">
+                        <label for="month"><b>Tháng</b></label>
+                        <select name="month" id="month">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </form>
+                    <p><b>Salary: </b><%= salary %></p>
+                </div>
+            </div>
+        </main>
+        <%- include('../includes/end.ejs') %>

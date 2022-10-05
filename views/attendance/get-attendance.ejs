@@ -1,0 +1,26 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" href="/css/forms.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <%- include('../includes/sub-nav.ejs') %>
+                <div class="title">
+                    <h4>Tên Nhân Viên: <%= staffs.name %></h4>
+                </div>
+                <div class="grid-container">
+                        <% staffs.workTime.forEach(staff => { %>
+                        <div class="grid-item">
+                            <h4>Nơi làm việc</h4>
+                            <p><%= staff.workPlace %></p>
+                            <h4>Giờ bắt đầu</h4>
+                            <p><%= staff.startTime.getDate() + "/" + (+staff.startTime.getMonth() + 1) + "/" 
+                                + staff.startTime.getFullYear() + " " + staff.startTime.getHours() + ":" 
+                                + staff.startTime.getMinutes() + ":" + staff.startTime.getSeconds() %></p>
+                        </div>
+                        <% }); %>
+                </div>
+            </main>
+            <%- include('../includes/end.ejs') %>
