@@ -27,11 +27,6 @@ exports.getWorkInfo = (req, res, next) => {
     req.staff
         .calculateTotalTime(req.staff)
         .then((staff) => {
-            // const overTime = staff.totalTimeWork > 8 ? staff.totalTimeWork - 8 : 0;
-            // const shortTime = staff.totalTimeWork < 8 ? 8 - staff.totalTimeWork : 0;
-            // const salary = staff.salaryScale * 3000000 + (overTime - shortTime) * 200000;
-            // console.log('overTime', overTime);
-            // console.log('shortTime', shortTime);
             const salary = calculateSalary(req.body.month, staff);
             res.render('info-check/work-info', {
                 path: '/work-info',
