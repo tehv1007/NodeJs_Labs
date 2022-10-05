@@ -161,7 +161,7 @@
                         <p>Số giờ đã làm thêm:       
                             <% let overtime = 0; workTimes.forEach(workTime => { %>
                                 <% if (workTime.endTime === null) { %>
-                                    --
+                                    
                                 <% } else { %> 
                                 <%  const hoursEnd = workTime.endTime.getHours(); %>
                                 <%  const hoursStart = workTime.startTime.getHours(); %>
