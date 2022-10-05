@@ -43,11 +43,11 @@
                             <tr>
                                 <td><%= workTime.startTime.getDate() + "/" + (workTime.startTime.getMonth() + 1) %></td>
                                 <td><%= workTime.startTime.getHours() + ":" + workTime.startTime.getMinutes()%></td>
-                                <td><%= workTime.endTime === null ? "--" : workTime.endTime.getHours() + ":" + workTime.endTime.getMinutes() %></td>
+                                <td><%= workTime.endTime === null ? "Chưa kết thúc" : workTime.endTime.getHours() + ":" + workTime.endTime.getMinutes() %></td>
                                 <td><%= workTime.workPlace %></td>
                                 <td>
                                     <% if (workTime.endTime === null) { %>
-                                        Chưa kết thúc
+                                        --
                                     <% } else { %> 
                                         <%= workTime.hours %> h
                                     <% } %>
