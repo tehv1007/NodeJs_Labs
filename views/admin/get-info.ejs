@@ -140,11 +140,15 @@
                                         ? 'Công Ty' : 'Khách Hàng' %>
                                     </td>
                                     <td colspan="2">
+                                        <% if (workTime.endTime == null) { %>
+                                            -- 
+                                        <% } else { %>
                                         <% const hoursEnd=workTime.endTime.getHours(); const
                                         hoursStart=workTime.startTime.getHours(); const totalTimeWork=(hoursEnd* 60
                                         +workTime.endTime.getMinutes()) - (hoursStart*60 +
                                         workTime.startTime.getMinutes()); %>
                                         <%= totalTimeWork/60 - 8 < 0 ? 0 : (totalTimeWork/60 - 8).toFixed(2) %>
+                                        <% } %>
                                     </td>
                                     <td colspan="2">
                                         <form action="/admin/deleteWorkTime" method="POST">
